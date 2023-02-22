@@ -1,10 +1,8 @@
 import express from 'express'
-// import bodyParser from 'body-parser'
 import bodyparser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
-// import http from 'http';
-// POST ROUTES///---->
+import dotenv from 'dotenv'
 import postRoutes from './routes/post.js'
 
 mongoose.set('strictQuery', false)
@@ -13,6 +11,7 @@ mongoose.set('strictQuery', false)
 
 
 const app = express()
+dotenv.config()
 
 
 
@@ -37,12 +36,12 @@ app.use("/posts", postRoutes)
 
 
 // mongobdb/atlas/
-const CONNECTION_URL = "mongodb+srv://useruserx:useruserx123@cluster0.uzrkbbi.mongodb.net/?retryWrites=true&w=majority"
+// const CONNECTION_URL = "mongodb+srv://useruserx:useruserx123@cluster0.uzrkbbi.mongodb.net/?retryWrites=true&w=majority"
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT 
 
 mongoose.connect (
-    CONNECTION_URL,{
+    process.env.CONNECTION_URL,{
         useNewUrlParser: true, 
         useUnifiedTopology: true,
 

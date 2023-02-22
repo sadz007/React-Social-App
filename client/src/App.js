@@ -19,22 +19,12 @@ function App() {
       className="bg-zinc-900 h-20 flex justify-center p-2">
         <h1 className="text-white text-5xl">Nav Bar</h1>
       </div>
-      <div className="shadow-xl w-ful ">
+      <div className="shadow-xl w-ful">
         <Form currentId={currentId} setCurrentId={setCurrentId}/>
       </div>
-
-      <div className=" ">
+      <div>
         <Posts  setCurrentId={setCurrentId}/>
       </div>
-
-      
-        
-
-        
-     
-        
-      
-      
     </div>
   );
 }

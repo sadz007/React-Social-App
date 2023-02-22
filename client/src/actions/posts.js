@@ -16,7 +16,7 @@ export const getPosts = () => async (dispatch) => {
 
     }
     catch (error) {
-        console.log(`ERROR ON GET POSTS:     ${error.message}`)
+        console.log(`ERROR ON GET POSTS:     ${error}`)
 
     }
 }
@@ -30,7 +30,7 @@ export const createPost = (post) => async (dispatch) => {
         console.log("DISPATCHING CREATE DATA POSTED", { type: CREATE, payload: data })
 
     } catch (error) {
-        console.log('ACTION CREATE ERROR::', error.message)
+        console.log('ACTION CREATE ERROR::', error)
     }
 }
 
@@ -41,7 +41,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 
         dispatch({ type: UPDATE, payload: data });
     } catch (error) {
-        console.log("CAN NOT UPDATE::",  error.message);
+        console.log("CAN NOT UPDATE::",  error);
     }
 };
 

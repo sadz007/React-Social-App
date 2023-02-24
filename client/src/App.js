@@ -1,30 +1,36 @@
-import React,{useEffect,useState} from "react";
+import React from "react";
 import './App.css';
-import Form from "./components/Form/Form";
-import Posts from "./components/Post/Posts";
-import { useDispatch } from "react-redux";
-import {getPosts} from './actions/posts'
+import NavBar from "./components/NavBar/NavBar";
+import Home from './components/Home/Home'
+import Auth from './components/Auth/Auth'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+
 
 function App() {
-  const [currentId, setCurrentId] = useState(null);
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    dispatch(getPosts())
-},[currentId,dispatch])
 
   return (
     <div >
-      <div
-      className="bg-zinc-900 h-20 flex justify-center p-2">
-        <h1 className="text-white text-5xl">Nav Bar</h1>
-      </div>
-      <div className="shadow-xl w-ful">
-        <Form currentId={currentId} setCurrentId={setCurrentId}/>
-      </div>
-      <div>
-        <Posts  setCurrentId={setCurrentId}/>
-      </div>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+
+
+          <Route path={"/"} exact element={<Home />} />
+          <Route path={"/auth"} exact element={<Auth />} />
+
+
+
+
+        </Routes>
+
+
+      </BrowserRouter>
+
+
+
+
+
     </div>
   );
 }

@@ -16,7 +16,7 @@ export const getPosts = () => async (dispatch) => {
 
     }
     catch (error) {
-        console.log(`ERROR ON GET POSTS:     ${error}`)
+        console.log(`ERROR ON GET POSTS: ${error}`)
 
     }
 }

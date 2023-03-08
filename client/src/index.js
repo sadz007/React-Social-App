@@ -9,10 +9,11 @@ import {reducers} from './reducers'
 import { configureStore } from '@reduxjs/toolkit'
 
 
-const store = configureStore({
-  reducer:reducers,
+const store = configureStore({ reducer:reducers, 
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(thunk)})
 
+
+  
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

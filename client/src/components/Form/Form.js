@@ -3,19 +3,24 @@ import FileBase from 'react-file-base64'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, updatePost } from '../../actions/posts'
 
+import { useNavigate} from 'react-router-dom'
+
 
 
 
 
 const Form = ({ currentId, setCurrentId }) => {
     const dispatch = useDispatch()
-    const post = useSelector(
-        (state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
 
     const [postData, setPostData] = useState({
-        creator: '', title: '', message: '', tags: '', selectedFile: ''
+        title: '', message: '', tags: '', selectedFile: ''
     });
 
+    const user = JSON.parse(localStorage.getItem('profile'));
+    // console.log("USER IN FORM ", user)
+
+    const navigate = useNavigate()
 
 
 
@@ -25,37 +30,44 @@ const Form = ({ currentId, setCurrentId }) => {
 
     const clear = () => {
         setCurrentId(null);
-        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+        setPostData({ title: '', message: '', tags: '', selectedFile: '' });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
         if (currentId) {
-            dispatch(updatePost(currentId, postData));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.first_name }));
             
             clear();
         } else {
-            dispatch(createPost(postData));
+            dispatch(createPost({ ...postData, name: user?.result?.first_name }));
             clear();
         }
+        navigate('/main')
     };
+
 
 
     return (
         <div className='flex justify-center mt-24'>
+            {/* {!user?.result?.email ?
+            <div>
+                <None/>
+            </div>: */}
 
             <div className="w-full max-w-md" >
                 <h1>Social Fun</h1>
                 <form onSubmit={handleSubmit}
                     className="bg-teal-50
                 shadow-xl rounded px-8 pt-6 pb-8 mb-4 ">
-                    <div>
+                    {/* <div>
                         <label className="block text-gray-700 text-sm font-bold mb-2">Creator</label>
                         <input type="text" name="creator" value={postData.creator}
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
-                    </div>
+                    </div> */}
                     <div>
                         <label className="block text-gray-700 text-sm font-bold mb-2">Title</label>
                         <input type="text" name="title" value={postData.title}
@@ -92,7 +104,9 @@ const Form = ({ currentId, setCurrentId }) => {
                         </div>
 
                 </form>
+             
             </div>
+
         </div>
 
     )

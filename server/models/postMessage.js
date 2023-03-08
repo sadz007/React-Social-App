@@ -10,9 +10,12 @@ const postSchema = mongoose.Schema({
     tags:[String],
     
     selectedFile: String,
-    likeCount:{
-        type:Number,
-        default: 0
+    // NAME OF THE PERSON LOGED IN .//
+    name:String,
+    
+    likes:{
+        type:[String],
+        default: []
     },
     createdAt:{
         type: Date,

@@ -11,7 +11,8 @@ const loadingCircle = {
     display: "block",
     width: "1rem",
     height: "1rem",
-    backgroundColor: "#3A36DB",
+    background: "cyan",
+    border:"2px solid gray",
     borderRadius: "0.5rem",
 };
 
@@ -37,7 +38,7 @@ const loadingCircleVariants = {
     },
 };
 const loadingCircleTransition = {
-    duration: 0.4,
+    duration: 0.5,
     yoyo: Infinity,
     ease: 'easeInOut'
 }
